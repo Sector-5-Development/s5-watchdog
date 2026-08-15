@@ -1,7 +1,7 @@
 fx_version 'cerulean'
 game 'gta5'
 
-name 'fivem-watchdog'
+name 's5-watchdog'
 author 'Sector 5 Development'
 description 'FiveM Watchdog by Sector 5 Development - captures server console output and sends it for crash diagnosis when something fatal appears.'
 version '1.0.0'

@@ -1,4 +1,6 @@
-# FiveM Watchdog
+# s5-watchdog — FiveM Watchdog
+
+### by [Sector 5 Development](https://discord.gg/7w9NgEgvY6)
 
 **Your server crashed. txAdmin told you it went down. Nothing told you why.**
 
@@ -29,7 +31,7 @@ Everything that runs **on your server**. Three Lua files, ~200 lines, no
 dependencies, no database, no exports, no events, nothing client-side.
 
 ```
-fivem-watchdog/
+s5-watchdog/
   fxmanifest.lua
   config.lua       ← the only file you edit
   server.lua       ← ring buffer, trigger match, one HTTPS POST
@@ -50,8 +52,8 @@ with it.
 
 ## Install
 
-1. Drop the `fivem-watchdog` folder into your `resources/` directory.
-2. Add `ensure fivem-watchdog` to your `server.cfg`.
+1. Drop the `s5-watchdog` folder into your `resources/` directory.
+2. Add `ensure s5-watchdog` to your `server.cfg`.
 3. Restart. **Leave `Config.SendEnabled = false` for this first restart.**
 4. Run `/watchdog` in the server console. It reports what it captured — locally,
    with nothing sent anywhere.
@@ -118,4 +120,29 @@ running it.
 
 ---
 
-Built by **Sector 5 Development** — FiveM deployment, script installs, and server work.
+## Who builds this
+
+**Sector 5 Development** — FiveM deployment and server work, on live servers with real
+players. Watchdog exists because the failures in its rule library are ones we had to
+diagnose ourselves, at 2am, on servers people were playing on.
+
+What else we do:
+
+| | |
+|---|---|
+| **Script installs** | $50 for one, $40 each for two or more in the same order |
+| **Server bundles** | Starter $250 · Full Build $500 · Launch Package $750+ |
+| **Care plans** | Basic $75/mo · Pro $150/mo · Studio $300/mo — **Watchdog included free on every plan** |
+| **Vehicle & weapon packs** | ingest, dedupe, collision-check, deploy |
+| **Malware scanning** | every third-party pack read before it touches a live server |
+
+Escrow-aware, backup-first, and we verify the console says a resource actually
+started before telling you it is live.
+
+### Free either way
+
+The resource in this repo is MIT licensed — clone it, read it, fork it, run your own
+rules against it. No account, no key, no signup needed to use the capture half.
+
+**[Join the Discord →](https://discord.gg/7w9NgEgvY6)** — free advice, install quotes,
+and Watchdog keys.

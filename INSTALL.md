@@ -38,7 +38,7 @@ You need three things:
 
 ## Step 1 — Upload the resource
 
-Drop the `fivem-watchdog` folder into your resources directory.
+Drop the `s5-watchdog` folder into your resources directory.
 
 If you use bracket folders (`[core]`, `[standalone]`, and so on), put it inside one that is
 already started with `ensure`. Then there is nothing to add to `server.cfg` at all.
@@ -46,12 +46,12 @@ already started with `ensure`. Then there is nothing to add to `server.cfg` at a
 If you do not use bracket folders, add this line to `server.cfg`:
 
 ```
-ensure fivem-watchdog
+ensure s5-watchdog
 ```
 
 ## Step 2 — Fill in your details
 
-Open `fivem-watchdog/config.lua` and set two values:
+Open `s5-watchdog/config.lua` and set two values:
 
 ```lua
 Config.Key        = 'the licence key we sent you'
@@ -62,7 +62,7 @@ Config.ServerName = 'Your Server Name'
 
 ## Step 3 — Restart and prove capture works
 
-Restart the server, or run `refresh` then `ensure fivem-watchdog` in the live console.
+Restart the server, or run `refresh` then `ensure s5-watchdog` in the live console.
 
 You should see:
 

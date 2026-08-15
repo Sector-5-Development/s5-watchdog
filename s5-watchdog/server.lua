@@ -56,7 +56,7 @@ end
 --- Send the buffer. `reason` is only for the local console.
 local function send(reason)
     if not Config.SendEnabled then
-        print(('[fivem-watchdog] would send now (%s) but Config.SendEnabled is false'):format(reason))
+        print(('[s5-watchdog] would send now (%s) but Config.SendEnabled is false'):format(reason))
         return
     end
     -- Match the PREFIX, not one exact placeholder string.
@@ -67,15 +67,15 @@ local function send(reason)
     -- bare 401 with nothing explaining why. Any future placeholder wording is
     -- caught now, and the message says what to do rather than just refusing.
     if Config.Key == nil or Config.Key == '' or Config.Key:find('^REPLACE_WITH') then
-        print('[fivem-watchdog] Config.Key is not set — refusing to send.')
-        print('[fivem-watchdog] Paste the licence key you were given into Config.Key in config.lua, then restart this resource.')
+        print('[s5-watchdog] Config.Key is not set — refusing to send.')
+        print('[s5-watchdog] Paste the licence key you were given into Config.Key in config.lua, then restart this resource.')
         return
     end
     if Config.ServerName == nil or Config.ServerName == ''
        or Config.ServerName:find('^REPLACE_WITH') then
         -- Not fatal: a diagnosis with a placeholder name still helps, it is just
         -- unidentifiable in a Discord channel watching several servers.
-        print('[fivem-watchdog] Config.ServerName is still a placeholder — your reports will be hard to identify.')
+        print('[s5-watchdog] Config.ServerName is still a placeholder — your reports will be hard to identify.')
     end
 
     local now = os.time()
@@ -91,11 +91,11 @@ local function send(reason)
 
     PerformHttpRequest(Config.Endpoint, function(status, _, _)
         if status == 202 then
-            print(('[fivem-watchdog] sent (%s) — diagnosis will appear in your Discord if anything is recognised'):format(reason))
+            print(('[s5-watchdog] sent (%s) — diagnosis will appear in your Discord if anything is recognised'):format(reason))
         else
             -- Never retry on failure. A crash loop plus retries is how you turn
             -- one incident into a flood.
-            print(('[fivem-watchdog] send failed, HTTP %s (not retrying)'):format(tostring(status)))
+            print(('[s5-watchdog] send failed, HTTP %s (not retrying)'):format(tostring(status)))
         end
     end, 'POST', payload, {
         ['Content-Type'] = 'application/json',
@@ -123,7 +123,7 @@ if RegisterConsoleListener then
     end)
     print('[FiveM Watchdog] console capture active - by Sector 5 Development')
 else
-    print('[fivem-watchdog] RegisterConsoleListener is NOT available — capture is impossible on this build')
+    print('[s5-watchdog] RegisterConsoleListener is NOT available — capture is impossible on this build')
 end
 
 -- ── console commands ─────────────────────────────────────────────────────────
@@ -131,7 +131,7 @@ end
 
 RegisterCommand('watchdog', function(source)
     if source ~= 0 then return end
-    print(('[fivem-watchdog] captured %d line(s) | buffer %d | sending %s | last trigger: %s')
+    print(('[s5-watchdog] captured %d line(s) | buffer %d | sending %s | last trigger: %s')
         :format(captured,
                 math.min(head, Config.BufferLines),
                 Config.SendEnabled and 'ENABLED' or 'disabled (capture-only)',
@@ -149,7 +149,7 @@ RegisterCommand('watchdogtail', function(source, args)
     local n = tonumber(args[1]) or 20
     local lines = {}
     for line in snapshot():gmatch('[^\n]+') do lines[#lines + 1] = line end
-    print(('[fivem-watchdog] last %d of %d captured line(s):'):format(math.min(n, #lines), #lines))
+    print(('[s5-watchdog] last %d of %d captured line(s):'):format(math.min(n, #lines), #lines))
     for i = math.max(1, #lines - n + 1), #lines do print('  ' .. lines[i]) end
 end, true)
 

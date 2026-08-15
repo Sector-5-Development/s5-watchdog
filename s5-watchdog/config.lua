@@ -1,5 +1,5 @@
 -- ─────────────────────────────────────────────────────────────────────────────
--- FiveM Watchdog  ·  by Sector 5 Development
+-- s5-watchdog  ·  FiveM Watchdog by Sector 5 Development
 -- Support: https://discord.gg/7w9NgEgvY6
 -- ─────────────────────────────────────────────────────────────────────────────
 
