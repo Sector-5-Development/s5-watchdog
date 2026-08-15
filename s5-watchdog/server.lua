@@ -84,9 +84,15 @@ local function send(reason)
     end
     lastSendAt = now
 
+    -- The resource version rides along so the service can tell who is running
+    -- old code. Without it, a fix shipped today is invisible: there is no way to
+    -- know which servers took it and which are still hitting a bug that is
+    -- already solved. Read from fxmanifest rather than hardcoded, so it cannot
+    -- drift from the version actually installed.
     local payload = json.encode({
-        server = Config.ServerName,
-        log    = snapshot(),
+        server  = Config.ServerName,
+        version = GetResourceMetadata(GetCurrentResourceName(), 'version', 0) or 'unknown',
+        log     = snapshot(),
     })
 
     PerformHttpRequest(Config.Endpoint, function(status, _, _)

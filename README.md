@@ -77,6 +77,7 @@ When a trigger line appears and the cooldown has elapsed, one HTTPS POST contain
 
 - the most recent console lines (default 2500, set by `Config.BufferLines`)
 - the server name you configured
+- the version of this resource, so we can tell you when you are running old code
 - your licence key
 
 Nothing else. No player data, no identifiers, no IP addresses, no database
